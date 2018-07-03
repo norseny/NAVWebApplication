@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NAVWebApplication.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="NAVWebApplication_ExportDataWebService_Export_Data" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://pibe1:10067/DynamicsNAV100-3/WS/CRONUS%20Polska%20Sp.%20z%20o.o./Codeunit/Export_Data</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

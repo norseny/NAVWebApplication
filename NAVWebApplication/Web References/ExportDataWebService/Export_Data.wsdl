@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Export_Data" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Export_Data" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/ExportItems" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/ExportItems" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="NAVItemType">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="No" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Description" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Type" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="UnitPrice" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Availability" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="NAVItem" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="NAVItem" type="tns:NAVItemType" />
+        </sequence>
+      </complexType>
+      <element name="NAVItem" type="tns:NAVItem" />
+    </schema>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Export_Data" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="ExportItems">
+        <complexType>
+          <sequence>
+            <element xmlns:q1="urn:microsoft-dynamics-nav/xmlports/ExportItems" minOccurs="1" maxOccurs="1" name="itemsXmlPort" type="q1:NAVItem" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ExportItems_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q2="urn:microsoft-dynamics-nav/xmlports/ExportItems" minOccurs="1" maxOccurs="1" name="itemsXmlPort" type="q2:NAVItem" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="ExportItems">
+    <part name="parameters" element="tns:ExportItems" />
+  </message>
+  <message name="ExportItems_Result">
+    <part name="parameters" element="tns:ExportItems_Result" />
+  </message>
+  <portType name="Export_Data_Port">
+    <operation name="ExportItems">
+      <input name="ExportItems" message="tns:ExportItems" />
+      <output name="ExportItems_Result" message="tns:ExportItems_Result" />
+    </operation>
+  </portType>
+  <binding name="Export_Data_Binding" type="tns:Export_Data_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="ExportItems">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Export_Data:ExportItems" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ExportItems">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ExportItems_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Export_Data">
+    <port name="Export_Data_Port" binding="tns:Export_Data_Binding">
+      <address location="https://pibe1:10067/DynamicsNAV100-3/WS/CRONUS%20Polska%20Sp.%20z%20o.o./Codeunit/Export_Data" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>
